@@ -38,6 +38,10 @@ if not existing_data or existing_data[0] != expected_headers:
 
 # Streamlit UI
 st.title("Ranadheer's Yoga Class Feedback")
+# Display the image
+image_url = "https://tse1.explicit.bing.net/th/id/OIP.JjOepauBQe_WsFOwNQZXuQAAAA?r=0&rs=1&pid=ImgDetMain&o=7&rm=3"
+st.image(image_url, caption="🧘 Yoga Guru Patanjali", use_column_width=True)
+
 
 name = st.text_input("Your Name")
 rating = st.slider("Rate today's session (1=Poor, 5=Excellent)", 1, 5, 3)
