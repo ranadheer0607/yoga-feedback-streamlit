@@ -5,6 +5,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 import pandas as pd
 from datetime import datetime
 
+st.set_page_config(page_title="Ranadheers Yoga Class Feedback", page_icon="🧘", layout="centered")
 # Define the scopes for Google Sheets & Drive API
 scope = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -33,9 +34,9 @@ if not existing_data or existing_data[0] != expected_headers:
     sheet.insert_row(expected_headers, 1)
 
 # Streamlit UI
-st.title("Ranadheer's Yoga Class Feedback")
+#st.title("Ranadheer's Yoga Class Feedback")
 
-st.set_page_config(page_title="Ranadheers Yoga Class Feedback", page_icon="🧘", layout="centered")
+
 
 name = st.text_input("Your Name")
 rating = st.slider("Rate today's session (1=Poor, 5=Excellent)", 1, 5, 3)
