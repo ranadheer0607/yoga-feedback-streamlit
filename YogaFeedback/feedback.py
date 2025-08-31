@@ -9,7 +9,8 @@ st.write("Please fill in the details below")
 
 # Step 1: Authenticate Google Sheets
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-creds = ServiceAccountCredentials.from_json_keyfile_name("credentials.json", scope)
+#creds = ServiceAccountCredentials.from_json_keyfile_name("credentials.json", scope)
+creds = st.secrets["gcp_service_account"]
 client = gspread.authorize(creds)
 
 # Step 2: Open your Google Sheet
