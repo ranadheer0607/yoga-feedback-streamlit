@@ -3,12 +3,17 @@ import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import pandas as pd
 from datetime import datetime
+import streamlit as st
+from google.oauth2.service_account import Credentials
 
 st.title("Yoga Feedback Form")
 st.write("Please fill in the details below")
 
 # Step 1: Authenticate Google Sheets
-scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+
+
+creds = Credentials.from_service_account_info(st.secrets["gcp_service_account"])
+
 #creds = ServiceAccountCredentials.from_json_keyfile_name("credentials.json", scope)
 creds = st.secrets["gcp_service_account"]
 client = gspread.authorize(creds)
