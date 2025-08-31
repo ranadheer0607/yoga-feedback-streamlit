@@ -1,44 +1,28 @@
 import streamlit as st
 import gspread
-from oauth2client.service_account import ServiceAccountCredentials
-import pandas as pd
-from datetime import datetime
-import streamlit as st
 from google.oauth2.service_account import Credentials
 
+# Set page config
+st.set_page_config(page_title="Yoga Feedback Form", page_icon="🧘", layout="centered")
+
+# Load credentials from Streamlit secrets
+creds = Credentials.from_service_account_info(st.secrets["gcp_service_account"])
+client = gspread.authorize(creds)
+
+# Open your Google Sheet
+sheet = client.open("Yoga Feedback").sheet1
+
+# Streamlit Form
 st.title("Yoga Feedback Form")
 st.write("Please fill in the details below")
 
-# Step 1: Authenticate Google Sheets
+with st.form("feedback_form"):
+    name = st.text_input("Name")
+    email = st.text_input("Email")
+    feedback = st.text_area("Your Feedback")
+    rating = st.slider("Rate the class (1-5)", 1, 5, 3)
+    submit = st.form_submit_button("Submit")
 
-
-creds = Credentials.from_service_account_info(st.secrets["gcp_service_account"])
-
-#creds = ServiceAccountCredentials.from_json_keyfile_name("credentials.json", scope)
-creds = st.secrets["gcp_service_account"]
-client = gspread.authorize(creds)
-
-# Step 2: Open your Google Sheet
-sheet = client.open("Yoga Feedback").sheet1
-
-# Check first row; if it's empty or wrong, add headers
-existing_data = sheet.get_all_values()
-expected_headers = ["Timestamp", "Name", "Rating", "Liked", "Suggestions", "Regular Attendance"]
-
-if not existing_data or existing_data[0] != expected_headers:
-    sheet.insert_row(expected_headers, 1)
-
-# Streamlit UI
-st.title("Yoga Class Feedback Form")
-
-name = st.text_input("Your Name")
-rating = st.slider("Rate today's session (1=Poor, 5=Excellent)", 1, 5, 3)
-liked = st.multiselect("What did you like today?", ["Asanas", "Pranayama", "Meditation", "Relaxation", "Other"])
-improvement = st.text_area("Any suggestions for improvement?")
-regular = st.radio("Do you plan to attend regularly?", ["Yes", "No", "Maybe"])
-
-# Step 3: Submit Feedback
-if st.button("Submit Feedback"):
-    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    sheet.append_row([timestamp, name, rating, ", ".join(liked), improvement, regular])
-    st.success("Thank you for your feedback! 🙏")
+    if submit:
+        sheet.append_row([name, email, feedback, rating])
+        st.success("Thank you for your feedback!")
