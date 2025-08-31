@@ -40,12 +40,13 @@ if not existing_data or existing_data[0] != expected_headers:
 # Display the image
 image_url = "https://tse1.explicit.bing.net/th/id/OIP.JjOepauBQe_WsFOwNQZXuQAAAA?r=0&rs=1&pid=ImgDetMain&o=7&rm=3"
 st.image(image_url, caption="🧘 Guru Patanjali 🙏", use_container_width=True)
-st.markdown("""
+'''st.markdown("""
 🧘 **योगेन चित्तस्य पदेन वाचाम्।**  
 मलं शरीरस्य च वैद्यकेन॥  
 योऽपाकरोत्तमं प्रवरं मुनिनाम्।  
 पतञ्जलिं प्राञ्जलिरानतोऽस्मि॥ 🙏
 """)
+'''
 
 # Streamlit UI
 st.title("Ranadheer's Yoga Class Feedback")
