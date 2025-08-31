@@ -39,8 +39,7 @@ if not existing_data or existing_data[0] != expected_headers:
 
 # Display the image
 image_url = "https://tse1.explicit.bing.net/th/id/OIP.JjOepauBQe_WsFOwNQZXuQAAAA?r=0&rs=1&pid=ImgDetMain&o=7&rm=3"
-st.image(image_url, caption="🧘🙏
-", use_container_width=True)
+st.image(image_url, caption="🧘 🙏", use_container_width=True)
 
 # Streamlit UI
 st.title("Ranadheer's Yoga Class Feedback")
