@@ -21,6 +21,7 @@ client = gspread.authorize(creds)
 
 # Open the spreadsheet and sheet
 
+
 # Step 2: Open your Google Sheet
 sheet = client.open("Yoga Feedback").sheet1
 
@@ -32,7 +33,9 @@ if not existing_data or existing_data[0] != expected_headers:
     sheet.insert_row(expected_headers, 1)
 
 # Streamlit UI
-st.title("Yoga Class Feedback Form")
+#st.title("Ranadheer's Yoga Class Feedback")
+
+st.set_page_config(page_title="Ranadheer's Yoga Class Feedback", page_icon="🧘", layout="centered")
 
 name = st.text_input("Your Name")
 rating = st.slider("Rate today's session (1=Poor, 5=Excellent)", 1, 5, 3)
