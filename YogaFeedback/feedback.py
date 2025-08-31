@@ -17,7 +17,7 @@ creds = Credentials.from_service_account_info(
 client = gspread.authorize(creds)
 
 # Open the spreadsheet and sheet
-spreadsheet = client.open("YogaFeedback")  # Replace with your sheet name
+spreadsheet = client.open("Yoga Feedback")  # Replace with your sheet name
 sheet = spreadsheet.sheet1  # Use .worksheet("SheetName") if multiple sheets
 
 # Example: Write something to the sheet
