@@ -17,16 +17,6 @@ creds = Credentials.from_service_account_info(
 client = gspread.authorize(creds)
 
 # Open the spreadsheet and sheet
-'''spreadsheet = client.open("Yoga Feedback")  # Replace with your sheet name
-sheet = spreadsheet.sheet1  # Use .worksheet("SheetName") if multiple sheets
-
-# Example: Write something to the sheet
-sheet.append_row(["Name", "Feedback", "Date"])
-
-# Example: Read data from sheet
-data = sheet.get_all_records()
-st.write("Current Data in Sheet:")
-st.write(data)'''
 
 # Step 2: Open your Google Sheet
 sheet = client.open("Yoga Feedback").sheet1
